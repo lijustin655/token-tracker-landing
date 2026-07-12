@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TokenTracker — AI API 费用追踪</title>
+  <meta name="description" content="永久免费使用。自动追踪 OpenAI/Claude/Gemini 等 AI API 的调用量和费用，帮独立开发者省钱。">
+  <meta property="og:title" content="TokenTracker — AI API 费用追踪">
+  <meta property="og:description" content="永久免费使用。自动追踪 AI API 费用，发现省钱机会。">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --bg: #0f0f1a;
+      --card: #1a1a2e;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: #2d2d4a;
+      --success: #22c55e;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+    /* Hero */
+    header {
+      padding: 60px 0 40px;
+      text-align: center;
+    }
+    .logo { font-size: 2.5rem; margin-bottom: 8px; }
+    h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 12px; background: linear-gradient(135deg, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .subtitle { font-size: 1.15rem; color: var(--muted); max-width: 600px; margin: 0 auto 24px; }
+    .badge {
+      display: inline-block;
+      background: rgba(99,102,241,0.15);
+      color: #818cf8;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .badge.free { background: rgba(34,197,94,0.12); color: var(--success); }
+
+    /* CTA Buttons */
+    .cta-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px; border-radius: 12px; font-size: 1rem; font-weight: 600;
+      text-decoration: none; transition: all 0.2s; border: none; cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--primary); color: #818cf8; }
+    .btn-secondary .arrow { transition: transform 0.2s; }
+    .btn-secondary:hover .arrow { transform: translateX(3px); }
+
+    /* Pricing Section */
+    .pricing { padding: 50px 0; }
+    .section-title { font-size: 1.8rem; font-weight: 700; text-align: center; margin-bottom: 8px; }
+    .section-sub { color: var(--muted); text-align: center; margin-bottom: 36px; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .pricing-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      transition: border-color 0.2s;
+    }
+    .pricing-card:hover { border-color: var(--primary); }
+    .pricing-card.featured {
+      border-color: var(--primary);
+      position: relative;
+    }
+    .pricing-card.featured::before {
+      content: '推荐';
+      position: absolute; top: -10px; right: 20px;
+      background: var(--primary); color: #fff;
+      padding: 3px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 700;
+    }
+    .plan-name { font-size: 1rem; font-weight: 600; color: var(--muted); margin-bottom: 8px; }
+    .plan-price { font-size: 2.5rem; font-weight: 800; margin-bottom: 4px; }
+    .plan-price sub { font-size: 0.9rem; font-weight: 400; color: var(--muted); }
+    .plan-period { font-size: 0.85rem; color: var(--muted); margin-bottom: 20px; }
+    .plan-features { list-style: none; margin-bottom: 20px; }
+    .plan-features li { padding: 6px 0; font-size: 0.9rem; color: var(--muted); }
+    .plan-features li::before { content: '✓ '; color: var(--success); font-weight: 700; }
+
+    /* Features */
+    .features { padding: 50px 0; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .feature-icon { font-size: 1.8rem; margin-bottom: 12px; }
+    .feature-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
+    .feature-card p { font-size: 0.9rem; color: var(--muted); }
+
+    /* Privacy */
+    .privacy-note {
+      text-align: center;
+      padding: 30px 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .privacy-note a { color: #818cf8; text-decoration: none; }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    footer a { color: #818cf8; text-decoration: none; }
+    .ko-fi-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 12px;
+      padding: 8px 20px;
+      background: #ff5e5b;
+      color: #fff;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .ko-fi-btn:hover { opacity: 0.9; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      header { padding: 40px 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo">🐾</div>
+    <div class="badge free">🆓 永久免费版可用</div>
+    <h1>TokenTracker</h1>
+    <p class="subtitle">自动追踪 OpenAI / Claude / Gemini 的 API 调用和费用<br>零配置，本地存储，保护隐私</p>
+    <div class="cta-group">
+      <a href="https://chromewebstore.google.com/detail/ID" class="btn btn-primary" target="_blank">
+        ⬇ 免费安装 Chrome 扩展
+      </a>
+      <a href="#features" class="btn btn-secondary">
+        了解更多 <span class="arrow">→</span>
+      </a>
+    </div>
+    <p style="margin-top: 12px; font-size: 0.8rem; color: var(--muted);">安装即用，无需注册，无需信用卡</p>
+  </div>
+</header>
+
+<div class="container">
+  <!-- Pricing -->
+  <section class="pricing">
+    <h2 class="section-title">定价</h2>
+    <p class="section-sub">永久免费版可用，用好了再升级</p>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="plan-name">Free</div>
+        <div class="plan-price">$0 <sub>/月</sub></div>
+        <div class="plan-period">永久免费</div>
+        <ul class="plan-features">
+          <li>追踪 1 个 AI Provider</li>
+          <li>30 天使用记录</li>
+          <li>按模型分组支出</li>
+          <li>本地存储，隐私安全</li>
+        </ul>
+        <div class="cta-group" style="margin-top: 0;">
+          <a href="https://chromewebstore.google.com/detail/ID" class="btn btn-primary" style="width:100%;justify-content:center;font-size:0.9rem;padding:10px 20px;" target="_blank">
+            立即免费安装
+          </a>
+        </div>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">$4.99 <sub>/月</sub></div>
+        <div class="plan-period">或 <strong>$49.99/年</strong>（省 16.5%）</div>
+        <ul class="plan-features">
+          <li>所有 AI Provider 追踪</li>
+          <li>无限历史记录</li>
+          <li>省钱建议 & 替代模型推荐</li>
+          <li>邮件周报 + 预算告警</li>
+          <li>数据导出 & 趋势分析</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card">
+        <div class="plan-name">Team</div>
+        <div class="plan-price">$14.99 <sub>/月</sub></div>
+        <div class="plan-period">或 <strong>$149.99/年</strong></div>
+        <ul class="plan-features">
+          <li>全部 Pro 功能</li>
+          <li>团队成员管理</li>
+          <li>统一账单 & 成本分摊</li>
+          <li>审计日志 & SSO</li>
+          <li>API 访问</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <h2 class="section-title">为什么用 TokenTracker？</h2>
+    <p class="section-sub">AI 费用在涨，你不能不知道钱花哪了</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔌</div>
+        <h3>零配置，开箱即用</h3>
+        <p>安装 Chrome 扩展后自动开始追踪。无需配置 Proxy，无需改代码，打开安装即用。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>数据留在本地</h3>
+        <p>所有 Token 和费用数据保存在你浏览器本地 IndexedDB。没有任何数据上传到云端。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏷️</div>
+        <h3>多 Provider 统一追踪</h3>
+        <p>OpenAI / Anthropic / Google / DeepSeek — 所有 AI API 的费用在一个 Popup 里一次查看。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💡</div>
+        <h3>智能省钱建议</h3>
+        <p>发现你常用的模型有更便宜的替代方案？TokenTracker 会自动推荐可省多少。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>按模型分组</h3>
+        <p>GPT-4o 花了多少？Claude 花了多少？一键看明白。最烧钱的模型高亮显示。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📧</div>
+        <h3>周报 & 预算告警</h3>
+        <p>每周推送到邮箱告诉你 API 支出情况。超出预算时自动告警，防止月底吓一跳。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy -->
+  <div class="privacy-note">
+    <p>🔒 所有数据本地存储 · 零数据外泄 · <a href="https://raw.githubusercontent.com/lijustin655/token-tracker-privacy/main/PRIVACY.md" target="_blank">查看隐私政策</a></p>
+    <p style="margin-top: 6px;">支持 OpenAI / Claude / Gemini / DeepSeek / 更多模型持续添加</p>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>TokenTracker — 面向独立开发者的 AI API 成本管家 🐾</p>
+    <p style="margin-top: 6px;">Made with ❤️ by 小小抓</p>
+    <a href="https://ko-fi.com/justinli27475" class="ko-fi-btn" target="_blank">☕ 支持一杯咖啡</a>
+  </div>
+</footer>
+
+</body>
+</html>
