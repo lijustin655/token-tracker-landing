@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TokenTracker — AI API 费用追踪</title>
-  <meta name="description" content="永久免费使用。自动追踪 OpenAI/Claude/Gemini 等 AI API 的调用量和费用，帮独立开发者省钱。">
-  <meta property="og:title" content="TokenTracker — AI API 费用追踪">
-  <meta property="og:description" content="永久免费使用。自动追踪 AI API 费用，发现省钱机会。">
+  <title>TokenTracker — AI API Cost Tracker</title>
+  <meta name="description" content="Free, privacy-first Chrome extension that automatically tracks your AI API costs across 25+ providers. Zero config, local storage, no account needed.">
+  <meta property="og:title" content="TokenTracker — AI API Cost Tracker">
+  <meta property="og:description" content="Free, privacy-first Chrome extension that auto-tracks AI API costs. Zero config. Local storage.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <style>
@@ -30,7 +30,6 @@
     }
     .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
 
-    /* Hero */
     header {
       padding: 60px 0 40px;
       text-align: center;
@@ -50,7 +49,6 @@
     }
     .badge.free { background: rgba(34,197,94,0.12); color: var(--success); }
 
-    /* CTA Buttons */
     .cta-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
@@ -71,11 +69,10 @@
     .btn-secondary .arrow { transition: transform 0.2s; }
     .btn-secondary:hover .arrow { transform: translateX(3px); }
 
-    /* Pricing Section */
     .pricing { padding: 50px 0; }
     .section-title { font-size: 1.8rem; font-weight: 700; text-align: center; margin-bottom: 8px; }
     .section-sub { color: var(--muted); text-align: center; margin-bottom: 36px; }
-    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; justify-content: center; }
     .pricing-card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -89,7 +86,7 @@
       position: relative;
     }
     .pricing-card.featured::before {
-      content: '推荐';
+      content: 'Popular';
       position: absolute; top: -10px; right: 20px;
       background: var(--primary); color: #fff;
       padding: 3px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 700;
@@ -102,7 +99,6 @@
     .plan-features li { padding: 6px 0; font-size: 0.9rem; color: var(--muted); }
     .plan-features li::before { content: '✓ '; color: var(--success); font-weight: 700; }
 
-    /* Features */
     .features { padding: 50px 0; }
     .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
     .feature-card {
@@ -115,7 +111,6 @@
     .feature-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
     .feature-card p { font-size: 0.9rem; color: var(--muted); }
 
-    /* Privacy */
     .privacy-note {
       text-align: center;
       padding: 30px 0;
@@ -124,7 +119,6 @@
     }
     .privacy-note a { color: #818cf8; text-decoration: none; }
 
-    /* Footer */
     footer {
       padding: 40px 0;
       border-top: 1px solid var(--border);
@@ -158,70 +152,58 @@
 <header>
   <div class="container">
     <div class="logo">🐾</div>
-    <div class="badge free">🆓 永久免费版可用</div>
+    <div class="badge free">🆓 Free to use, forever</div>
     <h1>TokenTracker</h1>
-    <p class="subtitle">自动追踪 OpenAI / Claude / Gemini 的 API 调用和费用<br>零配置，本地存储，保护隐私</p>
+    <p class="subtitle">Automatically track AI API costs across 25+ providers<br>Zero config. Local storage. Privacy first.</p>
     <div class="cta-group">
       <a href="#" class="btn btn-primary" target="_blank">
-        ⬇ 免费安装 Chrome 扩展
+        ⬇ Install Free Chrome Extension
       </a>
       <a href="#features" class="btn btn-secondary">
-        了解更多 <span class="arrow">→</span>
+        Learn More <span class="arrow">→</span>
       </a>
     </div>
     <p style="margin-top: 12px; font-size: 0.8rem; color: var(--muted);">
-      🕐 商店审核中 · 通过后即可安装
+      🕐 Store review in progress — will be installable once approved
     </p>
-    <p style="font-size: 0.8rem; color: var(--muted);">安装即用，无需注册，无需信用卡</p>
+    <p style="font-size: 0.8rem; color: var(--muted);">No account. No credit card. Just install and use.</p>
   </div>
 </header>
 
 <div class="container">
   <!-- Pricing -->
   <section class="pricing">
-    <h2 class="section-title">定价</h2>
-    <p class="section-sub">永久免费版可用，用好了再升级</p>
+    <h2 class="section-title">Pricing</h2>
+    <p class="section-sub">Free to start. Upgrade when you need more.</p>
     <div class="pricing-grid">
       <div class="pricing-card">
         <div class="plan-name">Free</div>
-        <div class="plan-price">$0 <sub>/月</sub></div>
-        <div class="plan-period">永久免费</div>
+        <div class="plan-price">$0 <sub>/mo</sub></div>
+        <div class="plan-period">Forever free</div>
         <ul class="plan-features">
-          <li>追踪 1 个 AI Provider</li>
-          <li>30 天使用记录</li>
-          <li>按模型分组支出</li>
-          <li>本地存储，隐私安全</li>
+          <li>Track 1 provider</li>
+          <li>30-day call history</li>
+          <li>Per-model cost breakdown</li>
+          <li>100% local storage</li>
         </ul>
         <div class="cta-group" style="margin-top: 0;">
           <a href="#" class="btn btn-primary" style="width:100%;justify-content:center;font-size:0.9rem;padding:10px 20px;" target="_blank">
-            🕐 审核中 — 通过后安装
+            🕐 Pending Approval — Install Once Published
           </a>
         </div>
       </div>
 
       <div class="pricing-card featured">
         <div class="plan-name">Pro</div>
-        <div class="plan-price">$4.99 <sub>/月</sub></div>
-        <div class="plan-period">或 <strong>$49.99/年</strong>（省 16.5%）</div>
+        <div class="plan-price">$4.99 <sub>/mo</sub></div>
+        <div class="plan-period">or <strong>$49.99/year</strong> (save 16.5%)</div>
         <ul class="plan-features">
-          <li>所有 AI Provider 追踪</li>
-          <li>无限历史记录</li>
-          <li>省钱建议 & 替代模型推荐</li>
-          <li>邮件周报 + 预算告警</li>
-          <li>数据导出 & 趋势分析</li>
-        </ul>
-      </div>
-
-      <div class="pricing-card">
-        <div class="plan-name">Team</div>
-        <div class="plan-price">$14.99 <sub>/月</sub></div>
-        <div class="plan-period">或 <strong>$149.99/年</strong></div>
-        <ul class="plan-features">
-          <li>全部 Pro 功能</li>
-          <li>团队成员管理</li>
-          <li>统一账单 & 成本分摊</li>
-          <li>审计日志 & SSO</li>
-          <li>API 访问</li>
+          <li>Unlimited providers</li>
+          <li>Unlimited call history</li>
+          <li>Smart savings engine (L1-L8)</li>
+          <li>Budget management with alerts</li>
+          <li>Project tagging</li>
+          <li>Export JSON / CSV</li>
         </ul>
       </div>
     </div>
@@ -229,54 +211,54 @@
 
   <!-- Features -->
   <section class="features" id="features">
-    <h2 class="section-title">为什么用 TokenTracker？</h2>
-    <p class="section-sub">AI 费用在涨，你不能不知道钱花哪了</p>
+    <h2 class="section-title">Why TokenTracker?</h2>
+    <p class="section-sub">AI costs are rising. You deserve to know where your money goes.</p>
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon">🔌</div>
-        <h3>零配置，开箱即用</h3>
-        <p>安装 Chrome 扩展后自动开始追踪。无需配置 Proxy，无需改代码，打开安装即用。</p>
+        <h3>Zero config, just works</h3>
+        <p>Install the Chrome extension and it starts tracking automatically. No proxy setup, no code changes, no API keys required.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🔒</div>
-        <h3>数据留在本地</h3>
-        <p>所有 Token 和费用数据保存在你浏览器本地 IndexedDB。没有任何数据上传到云端。</p>
+        <h3>100% local & private</h3>
+        <p>All token and cost data stored in your browser's IndexedDB. Nothing is uploaded to any cloud. Ever.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🏷️</div>
-        <h3>多 Provider 统一追踪</h3>
-        <p>OpenAI / Anthropic / Google / DeepSeek — 所有 AI API 的费用在一个 Popup 里一次查看。</p>
+        <h3>25+ providers, one view</h3>
+        <p>OpenAI, Anthropic, Google, DeepSeek, xAI, Mistral — all your AI API costs in a single popup, automatically detected.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">💡</div>
-        <h3>智能省钱建议</h3>
-        <p>发现你常用的模型有更便宜的替代方案？TokenTracker 会自动推荐可省多少。</p>
+        <h3>Smart savings suggestions</h3>
+        <p>TokenTracker automatically detects when cheaper alternatives exist and tells you exactly how much you'd save.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">📊</div>
-        <h3>按模型分组</h3>
-        <p>GPT-4o 花了多少？Claude 花了多少？一键看明白。最烧钱的模型高亮显示。</p>
+        <h3>Per-model breakdown</h3>
+        <p>See exactly what you're spending on GPT, Claude, Gemini, DeepSeek — broken down by model and provider at a glance.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">📧</div>
-        <h3>周报 & 预算告警</h3>
-        <p>每周推送到邮箱告诉你 API 支出情况。超出预算时自动告警，防止月底吓一跳。</p>
+        <div class="feature-icon">📋</div>
+        <h3>Budget management</h3>
+        <p>Set monthly budgets per provider. Real-time progress bars with color alerts. Monthly spending projections built in.</p>
       </div>
     </div>
   </section>
 
   <!-- Privacy -->
   <div class="privacy-note">
-    <p>🔒 所有数据本地存储 · 零数据外泄 · <a href="https://raw.githubusercontent.com/lijustin655/token-tracker-privacy/main/PRIVACY.md" target="_blank">查看隐私政策</a></p>
-    <p style="margin-top: 6px;">支持 OpenAI / Claude / Gemini / DeepSeek / 更多模型持续添加</p>
+    <p>🔒 All data stored locally · Zero data leaves your browser · <a href="https://raw.githubusercontent.com/lijustin655/token-tracker-privacy/main/PRIVACY.md" target="_blank">View Privacy Policy</a></p>
+    <p style="margin-top: 6px;">Supports OpenAI / Anthropic / Google / DeepSeek / xAI / Mistral / Together / Fireworks / Perplexity / OpenRouter / SiliconFlow / Groq / Qwen / ERNIE / GLM / Kimi / Doubao / MiniMax / Yi / Baichuan / Spark / Hunyuan / SenseNova / Baidu Qianfan — more added regularly</p>
   </div>
 </div>
 
 <footer>
   <div class="container">
-    <p>TokenTracker — 面向独立开发者的 AI API 成本管家 🐾</p>
+    <p>TokenTracker — AI API cost tracker for independent developers 🐾</p>
     <p style="margin-top: 6px;">Made with ❤️ by 小小抓</p>
-    <a href="https://ko-fi.com/justinli27475" class="ko-fi-btn" target="_blank">☕ 支持一杯咖啡</a>
+    <a href="https://ko-fi.com/justinli27475" class="ko-fi-btn" target="_blank">☕ Buy me a coffee</a>
   </div>
 </footer>
 
