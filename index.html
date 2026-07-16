@@ -127,18 +127,8 @@
       font-size: 0.85rem;
     }
     footer a { color: #818cf8; text-decoration: none; }
-    .ko-fi-btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 12px;
-      padding: 8px 20px;
-      background: #ff5e5b;
-      color: #fff;
-      border-radius: 20px;
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-    .ko-fi-btn:hover { opacity: 0.9; }
+    footer .footer-links { margin-top: 12px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    footer .footer-links a:hover { text-decoration: underline; }
 
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
@@ -156,15 +146,15 @@
     <h1>TokenTracker</h1>
     <p class="subtitle">Automatically track AI API costs across 25+ providers<br>Zero config. Local storage. Privacy first.</p>
     <div class="cta-group">
-      <a href="#" class="btn btn-primary" target="_blank">
-        ⬇ Install Free Chrome Extension
+      <a href="https://chromewebstore.google.com/detail/tokentracker-ai-api-cost/ijakoknmfmgdinkfhekikellnfdeedhe" class="btn btn-primary" target="_blank">
+        ⚡ Install Free Chrome Extension
       </a>
       <a href="#features" class="btn btn-secondary">
         Learn More <span class="arrow">→</span>
       </a>
     </div>
     <p style="margin-top: 12px; font-size: 0.8rem; color: var(--muted);">
-      🕐 Store review in progress — will be installable once approved
+      🚀 Store review in progress — will be installable once approved
     </p>
     <p style="font-size: 0.8rem; color: var(--muted);">No account. No credit card. Just install and use.</p>
   </div>
@@ -181,14 +171,14 @@
         <div class="plan-price">$0 <sub>/mo</sub></div>
         <div class="plan-period">Forever free</div>
         <ul class="plan-features">
-          <li>Track 1 provider</li>
-          <li>30-day call history</li>
+          <li>All providers included (25+)</li>
+          <li>Unlimited call history</li>
           <li>Per-model cost breakdown</li>
           <li>100% local storage</li>
         </ul>
         <div class="cta-group" style="margin-top: 0;">
-          <a href="#" class="btn btn-primary" style="width:100%;justify-content:center;font-size:0.9rem;padding:10px 20px;" target="_blank">
-            🕐 Pending Approval — Install Once Published
+          <a href="https://chromewebstore.google.com/detail/tokentracker-ai-api-cost/ijakoknmfmgdinkfhekikellnfdeedhe" class="btn btn-primary" style="width:100%;justify-content:center;font-size:0.9rem;padding:10px 20px;" target="_blank">
+            🚀 Pending Approval — Install Once Published
           </a>
         </div>
       </div>
@@ -198,13 +188,18 @@
         <div class="plan-price">$4.99 <sub>/mo</sub></div>
         <div class="plan-period">or <strong>$49.99/year</strong> (save 16.5%)</div>
         <ul class="plan-features">
-          <li>Unlimited providers</li>
           <li>Unlimited call history</li>
-          <li>Smart savings engine (L1-L8)</li>
+          <li>Smart cost comparison alerts</li>
           <li>Budget management with alerts</li>
-          <li>Project tagging</li>
+          <li>Project tagging & filtering</li>
           <li>Export JSON / CSV</li>
+          <li>Priority email support</li>
         </ul>
+        <div class="cta-group" style="margin-top: 0;">
+          <a href="#" class="btn btn-primary" style="width:100%;justify-content:center;font-size:0.9rem;padding:10px 20px;" target="_blank">
+            🔒 Subscribe via Creem — Coming Soon
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -231,8 +226,8 @@
       </div>
       <div class="feature-card">
         <div class="feature-icon">💡</div>
-        <h3>Smart savings suggestions</h3>
-        <p>TokenTracker automatically detects when cheaper alternatives exist and tells you exactly how much you'd save.</p>
+        <h3>Smart cost comparison</h3>
+        <p>See cost trends across providers and models. TokenTracker highlights unusual spending patterns so you can optimize.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">📊</div>
@@ -249,7 +244,7 @@
 
   <!-- Privacy -->
   <div class="privacy-note">
-    <p>🔒 All data stored locally · Zero data leaves your browser · <a href="https://raw.githubusercontent.com/lijustin655/token-tracker-privacy/main/PRIVACY.md" target="_blank">View Privacy Policy</a></p>
+    <p>🔒 All data stored locally · Zero data leaves your browser · <a href="https://raw.githubusercontent.com/lijustin655/token-tracker-privacy/main/PRIVACY.md" target="_blank">Privacy Policy</a> · <a href="https://raw.githubusercontent.com/lijustin655/token-tracker-privacy/main/TOS.md" target="_blank">Terms of Service</a></p>
     <p style="margin-top: 6px;">Supports OpenAI / Anthropic / Google / DeepSeek / xAI / Mistral / Together / Fireworks / Perplexity / OpenRouter / SiliconFlow / Groq / Qwen / ERNIE / GLM / Kimi / Doubao / MiniMax / Yi / Baichuan / Spark / Hunyuan / SenseNova / Baidu Qianfan — more added regularly</p>
   </div>
 </div>
@@ -258,7 +253,11 @@
   <div class="container">
     <p>TokenTracker — AI API cost tracker for independent developers 🐾</p>
     <p style="margin-top: 6px;">Made with ❤️ by 小小抓</p>
-    <a href="https://ko-fi.com/justinli27475" class="ko-fi-btn" target="_blank">☕ Buy me a coffee</a>
+    <div class="footer-links">
+      <a href="https://raw.githubusercontent.com/lijustin655/token-tracker-privacy/main/PRIVACY.md" target="_blank">Privacy Policy</a>
+      <a href="https://raw.githubusercontent.com/lijustin655/token-tracker-privacy/main/TOS.md" target="_blank">Terms of Service</a>
+      <a href="https://chromewebstore.google.com/detail/tokentracker-ai-api-cost/ijakoknmfmgdinkfhekikellnfdeedhe" target="_blank">Chrome Web Store</a>
+    </div>
   </div>
 </footer>
 
